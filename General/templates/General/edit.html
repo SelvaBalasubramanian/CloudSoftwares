@@ -1,0 +1,27 @@
+{% extends 'General/base_profile.html' %}
+
+{% block dp%}
+<img class="circular-square" src= "{{ user_det.pro_pic.url }}" height="100px" width="100px"/>
+{% endblock%}
+{% block name %}{{ user_det.name }}{% endblock%}
+{% block links %}
+<li class="active"><a href="{% url 'softwares_pg' user_det.id %}">Softwares</a></li>
+<li><a href="{% url 'upload_pg' user_det.id %}">Uploads</a></li>
+<li><a href="{% url 'download_pg' user_det.id %}">Downloads</a></li>
+<li><a href="{% url 'view_pg' user_det.id %}">Profile</a></li>
+<li><a href="{% url 'logout' user_det.id %}">Logout</a></li>
+{% endblock %}
+
+{% block rightbar%}
+<h1>Edit your Profile</h1>
+<form action="{% url 'register' %}" method="post">
+{% csrf_token %}
+<h4>Name : </h4><input type="text" name="name" class="form-control" id="name" placeholder="Name" value={{user_det.name}}>
+<h4>Mail id : </h4><input type="email" name="mail" class="form-control" id="mail" placeholder="mail-id" value={{user_det.mail}}>
+<h4>Moile No : </h4><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Contact No" value={{user_det.mobile}}>
+<h4>Date Of Birth</h4><input type="date" name="dob" class="form-control" id="dob" placeholder="Date Of Birth" value={{user_det.dob}}>
+  <h5>Profile pic  <input type="file" name="pic_file" id="pic_file" class="btn btn-default" value="{{user_det.pro_pic}}"></h5>
+<br>
+<input type="submit" class="btn btn-default" value="Update">
+</form>
+{% endblock%}

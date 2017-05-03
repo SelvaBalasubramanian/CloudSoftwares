@@ -1,0 +1,16 @@
+{% extends 'General/base_profile.html' %}
+
+{% block dp%}
+<img class="circular-square" src= "{{ user_det.pro_pic.url }}" height="125px" width="125px"/>
+{% endblock%}
+{% block name %}{{ user_det.name }}{% endblock%}
+{% block links %}
+<li class="active"><a href="{% url 'softwares_pg' user_det.id %}">Softwares</a></li>
+<li><a href="{% url 'upload_pg' user_det.id %}">Uploads</a></li>
+<li><a href="{% url 'download_pg' user_det.id %}">Downloads</a></li>
+<li><a href="{% url 'view_pg' user_det.id %}">Profile</a></li>
+<li><a href="{% url 'logout' user_det.id %}">Logout</a></li>
+{% endblock %}
+
+{% block rightbar%}
+{% endblock%}

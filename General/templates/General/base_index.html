@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load staticfiles %}
+    <meta charset="UTF-8">
+	<title>
+     {% block title%} {% endblock %}
+	 </title>
+	     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+<nav>
+<div class = "container-fluid" >
+<div class = "navbar-header">
+<h3 style="font-family: Satisfy; ">Cloud_softwares    </h3>
+</div>
+
+
+</div>
+
+</nav>
+
+    <div class="wrap" style="width: 100%;">
+    <div class="float-left" style="float:left; width: 20% ;height: 100vh">
+       {% block leftbar%}
+       {% endblock%}
+    </div>
+    <div class="float-left" style="float:right; width: 80%;height: 100vh">
+       {% block rightbar%}
+       {% endblock%}
+  </div>
+
+</div>
+<div style="clear:both"></div>
+</body>
+<footer>
+       <h5 align="center">selva's project -- started on march 29</h5>
+</footer>
+</html>

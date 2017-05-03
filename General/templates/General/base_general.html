@@ -1,0 +1,35 @@
+{% extends 'General/index.html'%}
+{% load staticfiles %}
+{% block leftbar %}
+<img class="circular-square" src="{% static 'img/default.jpg' %}" height="125px" width="125px">
+<i><h4 style="color:white; margin-left:85px;"> Guest</h4></i>
+<ul>
+<li class="active"><a href="{% url 'g_softwares'%}">Softwares</a></li>
+<li><a href="{% url 'log_pg'%}">Login</a></li>
+<li><a href="{% url 'reg_pg' %}">Register</a></li>
+</ul>
+{% endblock %}
+
+{% block rightbar %}
+<h3>Softwares</h3>
+<form action="{% url 'g_softwares1' %}" method="post">
+    {% csrf_token %}
+<input class="form-control" style="width:40%; margin-left:250px " type="text" name= "search" placeholder="type here to search softwares">
+<input type="submit" style="width:10% ;margin-left:400px"class="btn btn-default" value="Search">
+</form>
+ <br> <br><br>
+{% for s in soft_det %}
+<div class="col-sm-4 col-md-3">
+   <div class="panel panel-default">
+      <a href="{% url 'g_softwares_view' s.id %}">
+      <div class="panel-body">
+         <img class="circular-square" style="margin-left:25px;" src="{{ s.cover_pic.url }}" height="125px" width="125px" >
+         <h4>{{ s.name }}</h4>
+       </div>
+      </a>
+      <div class="panel-footer">Likes <label class="glyphicon glyphicon-heart" id='pa_label'></label>   {{ s.likes }} <br>
+      Downloads <label class="glyphicon glyphicon-download-alt" id='pa_label'></label>  {{ s.download }}</div>
+   </div>
+</div>
+{% endfor %}
+{% endblock %}

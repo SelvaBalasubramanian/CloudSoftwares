@@ -1,0 +1,29 @@
+{% extends 'General/base_profile.html' %}
+
+{% block dp%}
+<img class="circular-square" src= "{{ user_det.pro_pic.url }}" height="125px" width="125px"/>
+{% endblock%}
+{% block name %}{{ user_det.name }}{% endblock%}
+{% block links %}
+<li class="active"><a href="{% url 'softwares_pg' user_det.id %}">Softwares</a></li>
+<li><a href="{% url 'upload_pg' user_det.id %}">Uploads</a></li>
+<li><a href="{% url 'download_pg' user_det.id %}">Downloads</a></li>
+<li><a href="{% url 'view_pg' user_det.id %}">Profile</a></li>
+<li><a href="{% url 'logout' user_det.id %}">Logout</a></li>
+{% endblock %}
+
+{% block rightbar%}
+<h2>{{ soft_det.name }}</h2>
+<h3>cover_pic</h3>
+ <img class="circular-square" style="margin-left:25px;" src="{{ soft_det.cover_pic.url }}" height="125px" width="125px" >
+<h3>Name : </h3> {{ soft_det.name }}
+<h3>Uploaded By : </h3> {{ soft_det.own_by.name }}
+<h3>Description : </h3><p>{{ soft_det.description }}</p>
+<h3>Requirements : </h3><p>{{ soft_det.requirements}}</p>
+<h3>Likes : </h3><p>{{ soft_det.likes}}</p>
+<h3>Downloads : </h3><p>{{ soft_det.download}}</p>
+<form action="{% url 'down' user_det.id soft_det.id %}" method="post">
+  {% csrf_token %}
+   <input type="submit" class="btn btn-default" value="Download" >
+</form>
+{% endblock%}

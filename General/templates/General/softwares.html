@@ -1,0 +1,43 @@
+{% extends 'General/base_profile.html' %}
+
+{% block dp%}
+<img class="circular-square"  src= "{{ user_det.pro_pic.url }}" height="100px" width="100px"/>
+{% endblock%}
+{% block name %}{{ user_det.name }}{% endblock%}
+{% block links %}
+<li class="active"><a href="{% url 'softwares_pg' user_det.id %}">Softwares</a></li>
+<li><a href="{% url 'upload_pg' user_det.id %}">Uploads</a></li>
+<li><a href="{% url 'download_pg' user_det.id %}">Downloads</a></li>
+<li><a href="{% url 'view_pg' user_det.id %}">Profile</a></li>
+<li><a href="{% url 'logout' user_det.id %}">Logout</a></li>
+{% endblock %}
+
+{% block rightbar%}
+
+<h3>Welcome {{ user_det.name }}</h3>
+<h3>Softwares </h3>
+<form action="{% url 'soft_search' user_det.id %}" method="post">
+    {% csrf_token %}
+<input class="form-control" style="width:40%; margin-left:250px " type="text" name= "search" placeholder="type here to search softwares">
+<input type="submit" style="width:10% ;margin-left:400px"class="btn btn-default" value="Search">
+</form>
+ <br> <br><br>
+{% if soft_det  %}
+ {% for s in soft_det %}
+  <div class="col-sm-4 col-md-3">
+   <div class="panel panel-default">
+      <a href="{% url 'soft_view' user_det.id s.id%}">
+      <div class="panel-body">
+         <img class="circular-square" style="margin-left:25px;" src="{{ s.cover_pic.url }}" height="125px" width="125px" >
+         <h4>{{ s.name }}</h4>
+       </div>
+      </a>
+      <div class="panel-footer">Likes <label class="glyphicon glyphicon-heart" id='pa_label'></label>   {{ s.likes }} <br>
+      Downloads <label class="glyphicon glyphicon-download-alt" id='pa_label'></label>  {{ s.download }}</div>
+   </div>
+ </div>
+  {% endfor %}
+  {% else %}
+    <h4>sry cant find!! type with appropriate keyword</h4>
+{% endif %}
+{% endblock%}

@@ -1,0 +1,18 @@
+{%  extends 'General/base_general.html' %}
+{% load staticfiles %}
+
+{% block rightbar%}
+                        <h1>Registration</h1>
+ <form action="{% url 'register' %}" method="post">
+                 {% csrf_token %}
+        <h4>Name : </h4> <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+        <h4>Username : </h4><input type="text" name="username" class="form-control" id="username" placeholder="Username">
+        <h4>Mail-id : </h4><input type="email" name="mail" class="form-control" id="mail" placeholder="mail-id">
+        <h4>Contact No : </h4><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Contact No">
+        <h4>Date Of Birth : </h4><input type="date" name="dob" class="form-control" id="dob" placeholder="Date Of Birth">
+        <h4>Password : </h4><input type="password" name="password" class="form-control" id="password" placeholder="Password">
+        <h4>Profile pic  <input type="file" name="pic_file" id="pic_file" class="btn btn-default" value="{{user_det.pro_pic}}"></h4><br>
+         <input type="submit" class="btn btn-default" value="Register">
+            </form>
+
+{% endblock%}
